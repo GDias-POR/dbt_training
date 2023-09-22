@@ -9,3 +9,6 @@ select
     created as created_at
 
 from {{ source('stripe', 'payment') }}
+
+--additional macro insert to make a time restriction on the data being pulled
+--{{ limit_data_in_dev( 'created', 100) }}
