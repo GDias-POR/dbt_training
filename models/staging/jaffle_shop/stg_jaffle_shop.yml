@@ -34,3 +34,12 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+  - name: customers_daily_summary
+    description: Aggregated number of orders by day.
+    columns: 
+      - name: id
+        description: The primary key for orders each day.
+        tests:
+          - unique
+          - not_null

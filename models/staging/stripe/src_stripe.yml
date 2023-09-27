@@ -10,3 +10,28 @@ sources:
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: id
+            description: Primary key for customers.
+            tests:
+              - unique:
+                  config:
+                    severity: error
+                    error_if: ">100"
+                    warn_if: ">10"
+          - name: paymentmethod
+            description: The method that was used to execute the payment.
+            tests:
+              - accepted_values:
+                  values: ['credit_card', 'bank_transfer', 'gift_card', 'coupon']
+                  config:
+                    where: " status = 'success' "
+          - name: status
+            description: The status that the payment is in.
+            tests:
+              - accepted_values:
+                  values: ['fail', 'success']
+                  config:
+                    limit: 10
+                    store_failures: true
+
