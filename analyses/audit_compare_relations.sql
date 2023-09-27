@@ -1,4 +1,5 @@
 {# in dbt Develop #}
+{# having this in the analysis folder prevents it from running all the time #}
 
 {% set old_etl_relation=ref('customer_orders') %}
 
